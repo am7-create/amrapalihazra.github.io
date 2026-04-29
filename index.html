@@ -400,7 +400,45 @@
     letter-spacing: 0.06em;
   }
 
-  /* EDUCATION */
+  .project-links {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .proj-link {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.45rem 1.1rem;
+    border-radius: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .proj-link-gh {
+    background: rgba(255,255,255,0.08);
+    color: rgba(243,214,138,0.9);
+    border: 1px solid rgba(243,214,138,0.25);
+  }
+  .proj-link-gh:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .proj-link-live {
+    background: linear-gradient(135deg, rgba(232,168,48,0.25), rgba(200,121,26,0.25));
+    color: var(--pale-gold);
+    border: 1px solid rgba(232,168,48,0.4);
+  }
+  .proj-link-live:hover {
+    background: linear-gradient(135deg, rgba(232,168,48,0.4), rgba(200,121,26,0.4));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232,168,48,0.2);
+  }
   #education { background: var(--warm-white); }
   .edu-card {
     display: flex;
@@ -528,206 +566,9 @@
     .projects-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
-
-  /* PINK WELCOME POPUP */
-  #popup-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background: rgba(45, 10, 20, 0.52);
-    backdrop-filter: blur(10px);
-    animation: overlayIn 0.5s ease forwards;
-  }
-  #popup-overlay.hide {
-    animation: overlayOut 0.45s ease forwards;
-    pointer-events: none;
-  }
-  #popup {
-    background: #ffffff;
-    border-radius: 24px;
-    width: 100%;
-    max-width: 500px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 32px 80px rgba(180,30,70,0.18), 0 0 0 1px rgba(255,182,193,0.4);
-    animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
-  }
-  #popup-overlay.hide #popup { animation: popOut 0.4s ease forwards; }
-  .popup-countdown {
-    height: 3px;
-    background: linear-gradient(90deg, #ffb3c6, #ff85a1, #c9184a);
-    transform-origin: left;
-    animation: countBar 6s linear forwards;
-  }
-  .popup-banner {
-    position: relative;
-    height: 168px;
-    background: linear-gradient(140deg, #ffccd5 0%, #ffb3c6 40%, #ff85a1 75%, #c9184a 100%);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .popup-banner::before {
-    content: '';
-    position: absolute;
-    width: 260px; height: 260px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.11);
-    top: -90px; right: -70px;
-  }
-  .popup-banner::after {
-    content: '';
-    position: absolute;
-    width: 170px; height: 170px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    bottom: -65px; left: -35px;
-  }
-  .popup-av {
-    width: 86px; height: 86px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #fff0f3, #ffb3c6);
-    border: 3px solid rgba(255,255,255,0.6);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.7rem; font-weight: 400;
-    color: #c9184a;
-    position: relative; z-index: 2;
-    box-shadow: 0 8px 28px rgba(201,24,74,0.22);
-    animation: avFloat 3s ease-in-out infinite;
-  }
-  .pp { position: absolute; font-size: 1.3rem; z-index: 3; animation: ppFloat 4s ease-in-out infinite; }
-  .pp1 { top: 18px; left: 26px; animation-delay: 0s; }
-  .pp2 { top: 14px; right: 30px; animation-delay: 0.9s; }
-  .pp3 { bottom: 15px; left: 50px; animation-delay: 1.6s; }
-  .pp4 { bottom: 16px; right: 42px; animation-delay: 0.5s; }
-  .popup-x {
-    position: absolute; top: 11px; right: 13px;
-    width: 27px; height: 27px; border-radius: 50%;
-    background: rgba(255,255,255,0.22); border: none;
-    color: #fff; font-size: 0.85rem; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 10; transition: background 0.2s;
-  }
-  .popup-x:hover { background: rgba(255,255,255,0.4); }
-  .popup-body { padding: 1.9rem 2.2rem 2.3rem; text-align: center; }
-  .popup-hi {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem; letter-spacing: 0.24em;
-    text-transform: uppercase; color: #ff85a1; margin-bottom: 0.45rem;
-  }
-  .popup-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem; font-weight: 400;
-    color: #800f2f; line-height: 1.12; margin-bottom: 0.45rem;
-  }
-  .popup-title em {
-    font-style: italic;
-    background: linear-gradient(120deg, #ff85a1, #c9184a);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .popup-div {
-    width: 46px; height: 2px;
-    background: linear-gradient(90deg, #ff85a1, #ffd6e0);
-    border-radius: 2px; margin: 0.85rem auto 1rem;
-  }
-  .popup-msg {
-    font-size: 0.88rem; color: #9e6070; line-height: 1.8; margin-bottom: 1.5rem;
-  }
-  .popup-pills { display: flex; flex-wrap: wrap; gap: 0.48rem; justify-content: center; margin-bottom: 1.7rem; }
-  .ppill {
-    font-size: 0.68rem; font-weight: 500;
-    letter-spacing: 0.07em; padding: 0.3rem 0.9rem;
-    border-radius: 20px; text-transform: uppercase;
-  }
-  .pp-a { background: #ffe0e9; color: #ad1457; }
-  .pp-b { background: #fce4ec; color: #880e4f; }
-  .pp-c { background: #f8bbd0; color: #6a0032; }
-  .pp-d { background: #fff0f3; color: #c2185b; }
-  .pp-e { background: #ffd6e0; color: #880e4f; }
-  .popup-btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
-  .btn-go {
-    padding: 0.8rem 1.9rem;
-    background: linear-gradient(135deg, #ff85a1, #c9184a);
-    color: #fff; border: none; border-radius: 50px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(201,24,74,0.3);
-    transition: transform 0.22s, box-shadow 0.22s;
-  }
-  .btn-go:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(201,24,74,0.4); }
-  .btn-sk {
-    padding: 0.8rem 1.5rem;
-    background: transparent; color: #9e6070;
-    border: 1.5px solid #f5c2cc; border-radius: 50px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem; letter-spacing: 0.06em;
-    cursor: pointer; transition: all 0.22s;
-  }
-  .btn-sk:hover { border-color: #ff85a1; color: #c9184a; }
-  @keyframes overlayIn  { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes overlayOut { from { opacity: 1; } to { opacity: 0; } }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.88) translateY(28px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  @keyframes popOut {
-    from { opacity: 1; transform: scale(1); }
-    to   { opacity: 0; transform: scale(0.92) translateY(-18px); }
-  }
-  @keyframes avFloat {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
-  }
-  @keyframes ppFloat {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50%      { transform: translateY(-7px) rotate(10deg); }
-  }
-  @keyframes countBar {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
-  }
 </style>
 </head>
 <body>
-
-<!-- PINK WELCOME POPUP -->
-<div id="popup-overlay">
-  <div id="popup">
-    <div class="popup-countdown"></div>
-    <div class="popup-banner">
-      <button class="popup-x" onclick="closePopup()" aria-label="Close">✕</button>
-      <span class="pp pp1">🌸</span>
-      <span class="pp pp2">🌺</span>
-      <span class="pp pp3">🌷</span>
-      <span class="pp pp4">✿</span>
-      <div class="popup-av">A</div>
-    </div>
-    <div class="popup-body">
-      <p class="popup-hi">🌸 Hello & Welcome!</p>
-      <h2 class="popup-title">I'm <em>Amrapali Hazra</em></h2>
-      <div class="popup-div"></div>
-      <p class="popup-msg">A passionate Frontend Developer & AI enthusiast from KIIT, Bhubaneswar. I craft beautiful, intelligent web experiences that people truly love. So glad you're here!</p>
-      <div class="popup-pills">
-        <span class="ppill pp-a">Frontend Dev</span>
-        <span class="ppill pp-b">AI / ML</span>
-        <span class="ppill pp-c">Computer Vision</span>
-        <span class="ppill pp-d">UiPath · RPA</span>
-        <span class="ppill pp-e">CSE · 2027</span>
-      </div>
-      <div class="popup-btns">
-        <button class="btn-go" onclick="closePopup()">Explore My Work 🌸</button>
-        <button class="btn-sk" onclick="closePopup()">Skip Intro</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -746,10 +587,9 @@
   <div class="hero-text">
     <p class="hero-greeting">✦ Welcome to my portfolio</p>
     <h1 class="hero-name">Amra<em>pali</em><br>Hazra</h1>
-    <p class="hero-role">Frontend Developer &nbsp;·&nbsp; AI Enthusiast &nbsp;·&nbsp; CSE Student</p>
+    <p class="hero-role">Frontend Developer &nbsp;·&nbsp; Data Analyst &nbsp;·&nbsp; SQL Enthusiast</p>
     <p class="hero-desc">
-      Building elegant digital experiences at the intersection of design, code, and intelligence.
-      Currently pursuing B.Tech in Computer Science at KIIT, crafting interfaces that people love to use.
+      Building elegant digital experiences where <strong>data meets design</strong>. A final year CSE student at KIIT who transforms complex datasets into clear stories — and turns ideas into interfaces people love.
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View My Work</a>
@@ -771,10 +611,10 @@
   <div class="about-grid">
     <div class="about-text reveal">
       <p>
-        I'm a <strong>fourth-year Computer Science student</strong> at KIIT, Bhubaneswar, with a genuine passion for creating web experiences that are both functionally robust and visually delightful. My journey spans from building AI-powered diagnostic tools to architecting traffic prediction dashboards and developing data-driven solutions.
+        Final year CSE student at KIIT — turning raw data into real decisions. I live at the crossroads of <strong>SQL, Data Analytics</strong> &amp; frontend craft, building experiences that are as intelligent as they are beautiful.
       </p>
       <p>
-        Beyond code, I'm deeply interested in business growth, stock market analysis, and data-driven decision making — because great products are as much about understanding people as they are about writing elegant code.
+        From uncovering insights buried in databases to designing dashboards that tell compelling stories — I believe the most powerful skill is making <strong>data speak clearly</strong>. Fuelled by a deep love for stock markets, business strategy, and data-driven thinking.
       </p>
       <div class="deco-line"></div>
       <div class="skill-tags">
@@ -782,11 +622,10 @@
         <span class="tag">JavaScript</span>
         <span class="tag">Python</span>
         <span class="tag">SQL</span>
+        <span class="tag">Data Analytics</span>
         <span class="tag">OpenCV</span>
         <span class="tag">AI Integration</span>
-        <span class="tag">Data Analysis</span>
         <span class="tag">DBMS</span>
-        <span class="tag">UiPath</span>
       </div>
     </div>
     <div class="skills-grid reveal">
@@ -799,16 +638,6 @@
         <h4>🤖 AI / CV</h4>
         <p>Computer Vision, model integration, real-time detection pipelines</p>
         <div class="skill-tags"><span class="tag">Python</span><span class="tag">OpenCV</span></div>
-      </div>
-      <div class="skill-card">
-        <h4>🗄️ SQL & Data</h4>
-        <p>Database design, complex queries, data analysis & reporting</p>
-        <div class="skill-tags"><span class="tag">SQL</span><span class="tag">DBMS</span><span class="tag">Analytics</span></div>
-      </div>
-      <div class="skill-card">
-        <h4>📊 Data Analyst</h4>
-        <p>Data visualization, insights extraction, dashboards & reporting</p>
-        <div class="skill-tags"><span class="tag">Data Viz</span><span class="tag">Python</span><span class="tag">Excel</span></div>
       </div>
       <div class="skill-card">
         <h4>🔗 Integration</h4>
@@ -885,6 +714,10 @@
         <span class="tech-tag">AI / ML</span>
         <span class="tech-tag">REST API</span>
       </div>
+      <div class="project-links">
+        <a href="https://github.com/am7-create/respiratory-detection" target="_blank" class="proj-link proj-link-gh">🐙 GitHub</a>
+        <a href="https://pneumox.vercel.app/" target="_blank" class="proj-link proj-link-live">🚀 Live Demo</a>
+      </div>
     </div>
 
     <div class="project-card reveal">
@@ -899,6 +732,9 @@
         <span class="tech-tag">AI / ML</span>
         <span class="tech-tag">Dashboard UI</span>
         <span class="tech-tag">Data Viz</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/am7-create" target="_blank" class="proj-link proj-link-gh">🐙 GitHub</a>
       </div>
     </div>
 
@@ -915,6 +751,9 @@
         <span class="tech-tag">JavaScript</span>
         <span class="tech-tag">Accessibility</span>
       </div>
+      <div class="project-links">
+        <a href="https://github.com/am7-create/Student-Welfare-Committee-Website" target="_blank" class="proj-link proj-link-gh">🐙 GitHub</a>
+      </div>
     </div>
 
     <div class="project-card reveal">
@@ -929,6 +768,9 @@
         <span class="tech-tag">CSS</span>
         <span class="tech-tag">JavaScript</span>
         <span class="tech-tag">UI Components</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/am7-create" target="_blank" class="proj-link proj-link-gh">🐙 GitHub</a>
       </div>
     </div>
 
@@ -983,7 +825,7 @@
       <a href="tel:+917001784395" class="contact-link">
         <span>📞</span> +91 7001784395
       </a>
-      <a href="https://linkedin.com" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/amrapali-hazra-a17052295" target="_blank" class="contact-link">
         <span>💼</span> LinkedIn
       </a>
       <a href="https://github.com" target="_blank" class="contact-link">
@@ -1002,14 +844,6 @@
 </footer>
 
 <script>
-  // Popup
-  function closePopup() {
-    const o = document.getElementById('popup-overlay');
-    o.classList.add('hide');
-    setTimeout(() => o.style.display = 'none', 480);
-  }
-  setTimeout(closePopup, 6000);
-
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
