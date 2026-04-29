@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amrapali Hazra — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf6f0;
+    --warm-white: #fff9f2;
+    --ink: #1a1208;
+    --deep: #2c1f0e;
+    --amber: #c8791a;
+    --gold: #e8a830;
+    --pale-gold: #f3d68a;
+    --terracotta: #b8522a;
+    --sage: #6b7c5e;
+    --muted: #8a7a68;
+    --border: rgba(200,121,26,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 4rem;
+    backdrop-filter: blur(12px);
+    background: rgba(250,246,240,0.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--amber);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -10%;
+    top: 10%;
+    width: 55vw; height: 55vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,168,48,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-greeting {
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--deep);
+    margin-bottom: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .hero-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--deep);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.8s;
+    margin-bottom: 3rem;
+  }
+  .hero-actions {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1s;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.2rem;
+    background: var(--amber);
+    color: var(--warm-white);
+    border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--amber); color: var(--warm-white); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards 1s;
+  }
+  .avatar-ring {
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(200,121,26,0.3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    animation: spin 25s linear infinite;
+  }
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(200,121,26,0.2);
+  }
+  .avatar-core {
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f3d68a 0%, #e8a830 40%, #c8791a 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5.5rem;
+    font-weight: 300;
+    color: var(--warm-white);
+    animation: spin 25s linear infinite reverse;
+    box-shadow: 0 20px 60px rgba(200,121,26,0.25);
+  }
+  .orbit-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    top: -5px; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--gold);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SECTION TEMPLATE */
+  section {
+    padding: 7rem 4rem;
+    position: relative;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 80px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.4;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.1;
+    margin-bottom: 4rem;
+  }
+  .section-title em { font-style: italic; color: var(--amber); }
+
+  /* ABOUT */
+  #about { background: var(--warm-white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--deep);
+    margin-bottom: 1.5rem;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .skill-card {
+    padding: 1.4rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--cream);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .skill-card:hover { border-color: var(--amber); transform: translateY(-4px); }
+  .skill-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+  .skill-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.28rem 0.75rem;
+    background: rgba(200,121,26,0.1);
+    color: var(--amber);
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--cream); }
+  .exp-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+  .exp-card:last-child { border-bottom: 1px solid var(--border); }
+  .exp-meta {}
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .exp-company {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  .exp-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 1rem;
+  }
+  .exp-desc { font-size: 0.95rem; line-height: 1.85; color: var(--muted); }
+  .exp-desc li { margin-bottom: 0.6rem; list-style: none; padding-left: 1.2rem; position: relative; }
+  .exp-desc li::before {
+    content: '◆';
+    position: absolute; left: 0;
+    font-size: 0.5rem;
+    color: var(--amber);
+    top: 0.35rem;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--deep); }
+  #projects .section-title { color: var(--pale-gold); }
+  #projects .section-label { color: var(--gold); }
+  #projects .section-label::after { background: var(--gold); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(232,168,48,0.15);
+  }
+  .project-card {
+    background: #231808;
+    padding: 2.8rem 3rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.5s ease;
+  }
+  .project-card:hover::before { height: 100%; }
+  .project-card:hover { background: #2c1f0e; }
+  .project-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(232,168,48,0.12);
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--pale-gold);
+    margin-bottom: 0.8rem;
+  }
+  .project-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(243,214,138,0.55);
+    margin-bottom: 1.5rem;
+  }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(232,168,48,0.3);
+    color: rgba(232,168,48,0.7);
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  /* EDUCATION */
+  #education { background: var(--warm-white); }
+  .edu-card {
+    display: flex;
+    gap: 3rem;
+    padding: 2.2rem 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+    background: var(--cream);
+  }
+  .edu-card:hover { border-color: var(--amber); transform: translateX(8px); }
+  .edu-icon {
+    width: 52px; height: 52px;
+    background: rgba(200,121,26,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .edu-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 0.3rem;
+  }
+  .edu-deg { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--cream);
+    text-align: center;
+  }
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--deep);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    padding: 0.8rem 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .contact-link:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-3px); }
+  .contact-link span { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--cream);
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--amber); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* DECORATIVE LINE */
+  .deco-line {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, var(--amber), transparent);
+    margin: 2rem 0;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid, .exp-card { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ── PINK WELCOME POPUP ── */
+  #popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(45, 10, 20, 0.52);
+    backdrop-filter: blur(10px);
+    animation: overlayIn 0.5s ease forwards;
+  }
+  #popup-overlay.hide {
+    animation: overlayOut 0.45s ease forwards;
+    pointer-events: none;
+  }
+  #popup {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 32px 80px rgba(180,30,70,0.18), 0 0 0 1px rgba(255,182,193,0.4);
+    animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  }
+  #popup-overlay.hide #popup { animation: popOut 0.4s ease forwards; }
+  .popup-countdown {
+    height: 3px;
+    background: linear-gradient(90deg, #ffb3c6, #ff85a1, #c9184a);
+    transform-origin: left;
+    animation: countBar 6s linear forwards;
+  }
+  .popup-banner {
+    position: relative;
+    height: 168px;
+    background: linear-gradient(140deg, #ffccd5 0%, #ffb3c6 40%, #ff85a1 75%, #c9184a 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .popup-banner::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.11);
+    top: -90px; right: -70px;
+  }
+  .popup-banner::after {
+    content: '';
+    position: absolute;
+    width: 170px; height: 170px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    bottom: -65px; left: -35px;
+  }
+  .popup-av {
+    width: 86px; height: 86px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fff0f3, #ffb3c6);
+    border: 3px solid rgba(255,255,255,0.6);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.7rem; font-weight: 400;
+    color: #c9184a;
+    position: relative; z-index: 2;
+    box-shadow: 0 8px 28px rgba(201,24,74,0.22);
+    animation: avFloat 3s ease-in-out infinite;
+  }
+  .pp { position: absolute; font-size: 1.3rem; z-index: 3; animation: ppFloat 4s ease-in-out infinite; }
+  .pp1 { top: 18px; left: 26px; animation-delay: 0s; }
+  .pp2 { top: 14px; right: 30px; animation-delay: 0.9s; }
+  .pp3 { bottom: 15px; left: 50px; animation-delay: 1.6s; }
+  .pp4 { bottom: 16px; right: 42px; animation-delay: 0.5s; }
+  .popup-x {
+    position: absolute; top: 11px; right: 13px;
+    width: 27px; height: 27px; border-radius: 50%;
+    background: rgba(255,255,255,0.22); border: none;
+    color: #fff; font-size: 0.85rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; transition: background 0.2s;
+  }
+  .popup-x:hover { background: rgba(255,255,255,0.4); }
+  .popup-body { padding: 1.9rem 2.2rem 2.3rem; text-align: center; }
+  .popup-hi {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: #ff85a1; margin-bottom: 0.45rem;
+  }
+  .popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 400;
+    color: #800f2f; line-height: 1.12; margin-bottom: 0.45rem;
+  }
+  .popup-title em {
+    font-style: italic;
+    background: linear-gradient(120deg, #ff85a1, #c9184a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .popup-div {
+    width: 46px; height: 2px;
+    background: linear-gradient(90deg, #ff85a1, #ffd6e0);
+    border-radius: 2px; margin: 0.85rem auto 1rem;
+  }
+  .popup-msg {
+    font-size: 0.88rem; color: #9e6070; line-height: 1.8; margin-bottom: 1.5rem;
+  }
+  .popup-pills { display: flex; flex-wrap: wrap; gap: 0.48rem; justify-content: center; margin-bottom: 1.7rem; }
+  .ppill {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.07em; padding: 0.3rem 0.9rem;
+    border-radius: 20px; text-transform: uppercase;
+  }
+  .pp-a { background: #ffe0e9; color: #ad1457; }
+  .pp-b { background: #fce4ec; color: #880e4f; }
+  .pp-c { background: #f8bbd0; color: #6a0032; }
+  .pp-d { background: #fff0f3; color: #c2185b; }
+  .pp-e { background: #ffd6e0; color: #880e4f; }
+  .popup-btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .btn-go {
+    padding: 0.8rem 1.9rem;
+    background: linear-gradient(135deg, #ff85a1, #c9184a);
+    color: #fff; border: none; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(201,24,74,0.3);
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .btn-go:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(201,24,74,0.4); }
+  .btn-sk {
+    padding: 0.8rem 1.5rem;
+    background: transparent; color: #9e6070;
+    border: 1.5px solid #f5c2cc; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.06em;
+    cursor: pointer; transition: all 0.22s;
+  }
+  .btn-sk:hover { border-color: #ff85a1; color: #c9184a; }
+  @keyframes overlayIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes overlayOut { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.88) translateY(28px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes popOut {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.92) translateY(-18px); }
+  }
+  @keyframes avFloat {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+  @keyframes ppFloat {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-7px) rotate(10deg); }
+  }
+  @keyframes countBar {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- PINK WELCOME POPUP -->
+<div id="popup-overlay">
+  <div id="popup">
+    <div class="popup-countdown"></div>
+    <div class="popup-banner">
+      <button class="popup-x" onclick="closePopup()" aria-label="Close">✕</button>
+      <span class="pp pp1">🌸</span>
+      <span class="pp pp2">🌺</span>
+      <span class="pp pp3">🌷</span>
+      <span class="pp pp4">✿</span>
+      <div class="popup-av">A</div>
+    </div>
+    <div class="popup-body">
+      <p class="popup-hi">🌸 Hello & Welcome!</p>
+      <h2 class="popup-title">I'm <em>Amrapali Hazra</em></h2>
+      <div class="popup-div"></div>
+      <p class="popup-msg">A passionate Frontend Developer & AI enthusiast from KIIT, Bhubaneswar. I craft beautiful, intelligent web experiences that people truly love. So glad you're here!</p>
+      <div class="popup-pills">
+        <span class="ppill pp-a">Frontend Dev</span>
+        <span class="ppill pp-b">AI / ML</span>
+        <span class="ppill pp-c">Computer Vision</span>
+        <span class="ppill pp-d">UiPath · RPA</span>
+        <span class="ppill pp-e">CSE · 2027</span>
+      </div>
+      <div class="popup-btns">
+        <button class="btn-go" onclick="closePopup()">Explore My Work 🌸</button>
+        <button class="btn-sk" onclick="closePopup()">Skip Intro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Amrapali</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="hero-greeting">✦ Welcome to my portfolio</p>
+    <h1 class="hero-name">Amra<em>pali</em><br>Hazra</h1>
+    <p class="hero-role">Frontend Developer &nbsp;·&nbsp; AI Enthusiast &nbsp;·&nbsp; CSE Student</p>
+    <p class="hero-desc">
+      Building elegant digital experiences at the intersection of design, code, and intelligence. 
+      Currently pursuing B.Tech in Computer Science at KIIT, crafting interfaces that people love to use.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="avatar-ring">
+      <div class="orbit-dot"></div>
+      <div class="avatar-core">A</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">A developer who <em>cares</em><br>about every pixel</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm a second-year Computer Science student at KIIT, Bhubaneswar, with a genuine passion for creating web experiences that are both functionally robust and visually delightful. My journey spans from building AI-powered diagnostic tools to architecting traffic prediction dashboards.
+      </p>
+      <p>
+        Beyond code, I'm deeply interested in business growth, stock market analysis, and data-driven decision making — because great products are as much about understanding people as they are about writing elegant code.
+      </p>
+      <div class="deco-line"></div>
+      <div class="skill-tags">
+        <span class="tag">HTML & CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Python</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">AI Integration</span>
+        <span class="tag">DBMS</span>
+        <span class="tag">UiPath</span>
+      </div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <h4>🎨 Frontend</h4>
+        <p>Responsive UIs, accessible design, cross-browser compatibility</p>
+        <div class="skill-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>🤖 AI / CV</h4>
+        <p>Computer Vision, model integration, real-time detection pipelines</p>
+        <div class="skill-tags"><span class="tag">Python</span><span class="tag">OpenCV</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>🔗 Integration</h4>
+        <p>API connections, ML backend linking, real-time data visualization</p>
+        <div class="skill-tags"><span class="tag">REST APIs</span><span class="tag">JSON</span></div>
+      </div>
+      <div class="skill-card">
+        <h4>💬 Soft Skills</h4>
+        <p>Team collaboration, technical communication, adaptability</p>
+        <div class="skill-tags"><span class="tag">Agile</span><span class="tag">Teamwork</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title">Where I've <em>grown</em></h2>
+
+  <div class="exp-card reveal">
+    <div class="exp-meta">
+      <p class="exp-date">May – Jun 2025</p>
+      <p class="exp-company">IIT Tirupati</p>
+    </div>
+    <div>
+      <h3 class="exp-role">Computer Vision Intern</h3>
+      <ul class="exp-desc">
+        <li>Developed a real-time Face Detection Application utilizing Python, OpenCV, and Haar Cascade classifiers.</li>
+        <li>Optimized image preprocessing by implementing grayscale conversion and bounding box visualization, improving detection efficiency for live webcam feeds.</li>
+      </ul>
+      <div class="skill-tags" style="margin-top:1.2rem">
+        <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Haar Cascade</span><span class="tag">Computer Vision</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-card reveal">
+    <div class="exp-meta">
+      <p class="exp-date">2026 – 2027</p>
+      <p class="exp-company">KIIT University</p>
+    </div>
+    <div>
+      <h3 class="exp-role">Member — UiPath Student Community</h3>
+      <ul class="exp-desc">
+        <li>Active member of the UiPath Student Community (USC) at KIIT under the Training & Placement department.</li>
+        <li>Contributing to automation and RPA-related initiatives on campus.</li>
+      </ul>
+      <div class="skill-tags" style="margin-top:1.2rem">
+        <span class="tag">UiPath</span><span class="tag">RPA</span><span class="tag">Automation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title" style="color:var(--pale-gold)">Things I've <em>built</em></h2>
+
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-num">01</div>
+      <h3 class="project-title">Scan Pneumonia AI</h3>
+      <p class="project-role">Frontend Developer</p>
+      <p class="project-desc">
+        AI-powered respiratory diagnostic web app classifying 5–8 seconds of cough audio to detect COVID-19, Asthma, and Bronchitis with ~94% accuracy. Reduced user drop-off by an estimated 20% with a seamless onboarding UI.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">AI / ML</span>
+        <span class="tech-tag">REST API</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">02</div>
+      <h3 class="project-title">City Traffic Prediction</h3>
+      <p class="project-role">Full-Stack Developer</p>
+      <p class="project-desc">
+        AI system predicting city traffic patterns and congestion with 83% accuracy. Built an interactive web dashboard that improved data-driven decision-making speed by 30% through clear traffic flow visualization.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">AI / ML</span>
+        <span class="tech-tag">Dashboard UI</span>
+        <span class="tech-tag">Data Viz</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">03</div>
+      <h3 class="project-title">Student Welfare Portal</h3>
+      <p class="project-role">Frontend Web Developer</p>
+      <p class="project-desc">
+        Fully responsive, interactive web portal achieving an estimated 95+ Lighthouse accessibility score. Implemented modal popups and client-side validation, reducing form submission errors by 40%.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Accessibility</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">04</div>
+      <h3 class="project-title">Student Developer Society</h3>
+      <p class="project-role">Frontend Developer</p>
+      <p class="project-desc">
+        Scalable UI components with cross-browser compatibility for KIIT's developer community portal. A clean, optimized layout that improved end-user engagement metrics by 25%.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">UI Components</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">My academic <em>journey</em></h2>
+
+  <div class="reveal">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <h3 class="edu-name">Kalinga Institute of Industrial Technology</h3>
+        <p class="edu-deg">B.Tech in Computer Science and Engineering (CSE)</p>
+        <p class="edu-deg" style="color:var(--sage); font-size:0.82rem">Bhubaneswar, Odisha</p>
+        <p class="edu-date">2023 – 2027</p>
+        <div class="skill-tags" style="margin-top:0.8rem">
+          <span class="tag">DBMS</span><span class="tag">OS</span><span class="tag">Computer Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">📚</div>
+      <div>
+        <h3 class="edu-name">Sankari Vidyapith</h3>
+        <p class="edu-deg">Higher Secondary Education — Class XII</p>
+        <p class="edu-deg" style="color:var(--sage); font-size:0.82rem">West Bengal</p>
+        <p class="edu-date">2023</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center">Let's Connect</div>
+    <h2 class="section-title">Ready to <em>collaborate?</em></h2>
+    <p class="contact-quote">"Great things in business are never done by one person. They're done by a team."</p>
+
+    <div class="contact-links reveal">
+      <a href="mailto:amrapalihazra983@gmail.com" class="contact-link">
+        <span>✉️</span> Gmail
+      </a>
+      <a href="mailto:23052940@kiit.ac.in" class="contact-link">
+        <span>🎓</span> KIIT Mail
+      </a>
+      <a href="tel:+917001784395" class="contact-link">
+        <span>📞</span> +91 7001784395
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-link">
+        <span>💼</span> LinkedIn
+      </a>
+      <a href="https://github.com" target="_blank" class="contact-link">
+        <span>🐙</span> GitHub
+      </a>
+    </div>
+
+    <a href="mailto:amrapalihazra983@gmail.com" class="btn-primary" style="display:inline-block">Say Hello ✦</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span class="footer-brand">Amrapali Hazra</span>. Crafted with care.</p>
+  <p style="font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.1em;">CSE · KIIT · 2027</p>
+</footer>
+
+<script>
+  // Popup
+  function closePopup() {
+    const o = document.getElementById('popup-overlay');
+    o.classList.add('hide');
+    setTimeout(() => o.style.display = 'none', 480);
+  }
+  setTimeout(closePopup, 6000);
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--amber)' : '';
+    });
+  });
+</script>
+</body>
+</html>
